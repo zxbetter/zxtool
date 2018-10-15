@@ -1,3 +1,7 @@
+![npm version](https://img.shields.io/npm/v/zxtool.svg?style=for-the-badge)
+![npm download per month](https://img.shields.io/npm/dm/zxtool.svg?style=for-the-badge)
+![npm bundle size (minified)](https://img.shields.io/bundlephobia/min/zxtool.svg?style=for-the-badge)
+
 ## 简介
 
 使用 `node.js` 构建的命令行工具。
