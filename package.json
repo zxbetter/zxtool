@@ -1,0 +1,30 @@
+{
+  "name": "zxtool",
+  "bin": {
+    "zxfile": "./bin/file"
+  },
+  "version": "1.0.0",
+  "description": "command line tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "command line tool"
+  ],
+  "homepage": "https://github.com/zxbetter/zxtool",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zxbetter/zxtool"
+  },
+  "bugs": {
+    "url": "https://github.com/zxbetter/zxtool/issues"
+  },
+  "author": "devin",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "commander": "^2.19.0",
+    "ora": "^3.0.0"
+  }
+}

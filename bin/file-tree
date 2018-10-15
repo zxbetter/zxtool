@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+const program = require('commander')
+const type = require('../src/util/type')
+const fileTree = require('../src/file/file-tree')
+
+program
+  .option('-e --exclude <dir>', '排除指定的目录', type.list)
+  .parse(process.argv);
+
+fileTree.run(program)

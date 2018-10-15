@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+const program = require('commander')
+const package = require('../package.json')
+const file = require('../src/file')
+
+program
+  .version(package.version)
+  .command('tree <dir> [dirs...]', 'display directory tree')
+  .parse(process.argv)
+
+file.run(program)
