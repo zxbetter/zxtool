@@ -3,7 +3,7 @@
   "bin": {
     "zxfile": "./bin/file"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "command line tool",
   "main": "index.js",
   "scripts": {
