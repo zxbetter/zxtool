@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+/**
+ * 逐行读取指定文件，给每行数据添加前缀和后缀。
+ */
+
+const program = require('commander')
+const command = require('../src/string/prefixsuffix')
+
+program
+.option('-p --prefix [prefix]', '指定前缀')
+.option('-s --suffix [suffix]', '指定后缀')
+.option('-t --target [target]', '指定目标文件')
+.parse(process.argv);
+
+command.run(program)
