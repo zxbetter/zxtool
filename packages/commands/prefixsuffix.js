@@ -1,6 +1,6 @@
 const path = require('path')
 const fs = require('fs')
-const util = require('../util')
+const util = require('../libs')
 const readline = require('readline')
 const os = require('os')
 

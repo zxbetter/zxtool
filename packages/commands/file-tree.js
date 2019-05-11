@@ -1,6 +1,5 @@
 const path = require('path')
 const fs = require('fs')
-const util = require('../util')
 
 const BRANCH = '├─',
   LAST_BRANCH = '└─',
@@ -10,21 +9,16 @@ const BRANCH = '├─',
 // 排除参数
 const excludes = []
 
-exports.run = function (program) {
-  const args = program.args
-  if (!args.length) {
-    return util.showError('输入目录名称')
-  }
-
+exports.exec = function (dirs, cmd) {
   // 指定排除参数
-  if (program.exclude && program.exclude.length) {
-    program.exclude.forEach(function(item) {
+  if (cmd.exclude && cmd.exclude.length) {
+    cmd.exclude.forEach(function(item) {
       excludes.push(new RegExp(item))
     })
   }
 
-  args.forEach(function (arg) {
-    showDirTree(arg, '')
+  dirs.forEach(function (dir) {
+    showDirTree(dir, '')
   })
 }
 
