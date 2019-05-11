@@ -9,10 +9,10 @@ const BRANCH = '├─',
 // 排除参数
 const excludes = []
 
-exports.exec = function (dirs, cmd) {
+exports.exec = function (dirs, options) {
   // 指定排除参数
-  if (cmd.exclude && cmd.exclude.length) {
-    cmd.exclude.forEach(function(item) {
+  if (options.exclude && options.exclude.length) {
+    options.exclude.forEach(function(item) {
       excludes.push(new RegExp(item))
     })
   }

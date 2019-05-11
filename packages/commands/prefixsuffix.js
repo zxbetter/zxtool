@@ -1,6 +1,5 @@
 const path = require('path')
 const fs = require('fs')
-const util = require('../libs')
 const readline = require('readline')
 const os = require('os')
 
@@ -9,7 +8,7 @@ let prefix, suffix, target
 exports.run = function(program) {
   const args = program.args
   if (!args.length) {
-    return util.showError('输入文件名')
+    return console.log('输入文件名')
   }
 
   target = program.target || ''
@@ -17,7 +16,7 @@ exports.run = function(program) {
   prefix = program.prefix || ''
   suffix = program.suffix || ''
   if (!prefix && !suffix) {
-    return util.showError('前缀和后缀至少输入一个')
+    return console.log('前缀和后缀至少输入一个')
   }
 
   args.forEach(function(arg) {
