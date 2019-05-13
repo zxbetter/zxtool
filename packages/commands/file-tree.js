@@ -10,7 +10,7 @@ const BRANCH = '├─',
 // 排除参数
 const excludes = []
 
-exports.exec = function (dirs, options) {
+module.exports = (dirs, options) => {
   // 指定排除参数
   if (options.exclude && options.exclude.length) {
     options.exclude.forEach(function (item) {
@@ -106,7 +106,7 @@ function groupDirs(root, dirs) {
     let dir = dirs[i]
     let filePath = path.resolve(root, dir)
     if (!fs.existsSync(filePath)) {
-      console.log(chalk.red(`${filePath} 文件不存在`))
+      console.log(chalk.red(`${filePath} 文件或目录不存在`))
       continue
     }
     if (!fs.statSync(path.resolve(root, dir)).isDirectory()) {

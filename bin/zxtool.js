@@ -6,6 +6,7 @@ const package = require('../package.json')
 const cleanCmdArgs = require('../packages/libs/util/cleanCmdArgs')
 const optionList = require('../packages/libs/type/list')
 const fileTree = require('../packages/commands/file-tree')
+const note = require('../packages/commands/note')
 
 program
   .version(package.version)
@@ -16,7 +17,16 @@ program
   .description('列出目录树')
   .option('-e --exclude <dir>', '排除指定的目录', optionList)
   .action((dir, dirs, cmd) => {
-    fileTree.exec(dirs.concat(dir), cleanCmdArgs(cmd))
+    fileTree(dirs.concat(dir), cleanCmdArgs(cmd))
+  })
+
+program
+  .command('note')
+  .description('笔记工具')
+  .option('-i, --init <git>', '初始化笔记（需要指定 git 仓库地址）')
+  .option('-s, --sync [message]', '同步笔记')
+  .action((cmd) => {
+    note(cleanCmdArgs(cmd))
   })
 
 // 输入未知的命令时提示帮助信息
