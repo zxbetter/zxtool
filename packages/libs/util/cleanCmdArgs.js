@@ -7,12 +7,15 @@ const camelize = require('./camelize')
  * @param cmd 
  */
 module.exports = (cmd) => {
-  const args = {}
+  const args = {
+    length: 0
+  }
   cmd.options.forEach(o => {
     const key = camelize(o.long.replace(/^--/, ''))
     // 剔除没有指定的 option，以及 Command 对象的同名方法
     if (typeof cmd[key] !== 'function' && typeof cmd[key] !== 'undefined') {
       args[key] = cmd[key]
+      args.length++
     }
   })
   return args

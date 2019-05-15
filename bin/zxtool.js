@@ -26,7 +26,9 @@ program
   .option('-i, --init <git>', '初始化笔记（需要指定 git 仓库地址）')
   .option('-s, --sync [message]', '同步笔记')
   .action((cmd) => {
-    note(cleanCmdArgs(cmd))
+    let options = cleanCmdArgs(cmd)
+    if (options.length === 0) return program.outputHelp()
+    note(options)
   })
 
 // 输入未知的命令时提示帮助信息
