@@ -1,5 +1,5 @@
-![![npm version](https://img.shields.io/npm/v/zxtool.svg?style=for-the-badge)](https://www.npmjs.com/package/zxtool)
-![![npm download per month](https://img.shields.io/npm/dm/zxtool.svg?style=for-the-badge)](https://www.npmjs.com/package/zxtool)
+[![npm version](https://img.shields.io/npm/v/zxtool.svg?style=for-the-badge)](https://www.npmjs.com/package/zxtool)
+[![npm download per month](https://img.shields.io/npm/dm/zxtool.svg?style=for-the-badge)](https://www.npmjs.com/package/zxtool)
 
 ## 简介
 
@@ -35,10 +35,25 @@ $ zxtool tree src -e ^index
    └─type.js
 ```
 
-| 参数 | 说明 | 示例 |
-| :-- | :-- | :-- |
-| 默认 | 指定目录的名称，多个目录之间用空格隔开 | `zxtool tree src bin` |
-| `-e, --exclude` | 指定排除的选项，支持正则匹配，多个之间用逗号隔开 | `zxtool tree src -exclude ^index` |
+### `zxtool note`
+
+使用 git 仓库用于同步笔记。
+
+```shell
+# 同步笔记
+zxtool note -s "提交信息"
+```
+
+执行效果：
+
+```
+√ Checking the working tree status
+√ Adding changes to the index
+√ Record changes to the repository
+√ Pulling from remote master
+√ Pushing to remote master
+Complete!
+```
 
 ## License
 
