@@ -18,15 +18,24 @@ async function sync(message) {
 
     // git status
     var status = await gitStaus()
-    if (status.stdout.match(/nothing to commit, working tree clean/)) {
+    
+    // 本地分支领先远程分支，需要推送本地分支到远程分支
+    let onlyPushFlag = status.stdout.match(/Your branch is ahead of/)
+
+    // 本地仓库无需提交
+    let cleanFlag = status.stdout.match(/nothing to commit, working tree clean/)
+    
+    if (!onlyPushFlag && cleanFlag) {
       return console.log(chalk.green('nothing to commit, working tree clean'))
     }
 
-    // git add
-    await gitAdd()
-
-    // git commit
-    await gitCommit(message)
+    if (!onlyPushFlag) {
+      // git add
+      await gitAdd()
+  
+      // git commit
+      await gitCommit(message)
+    }
 
     // git pull
     const branch = status.stdout.match(/^On branch (.+)\s/)
