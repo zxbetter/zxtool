@@ -50,7 +50,7 @@ function showDirTree(dirName, palceHolder) {
   if (!files.length) {
     // 命令参数中指定的是空目录，则直接输出。
     if (palceHolder === '' && validExclude(dirName)) {
-      console.log(`${palceHolder}${LAST_BRANCH}${dirName}`)
+      console.log(`${palceHolder}${LAST_BRANCH}${chalk.green(dirName)}`)
     }
     return
   }
@@ -65,7 +65,7 @@ function showDirTree(dirName, palceHolder) {
   for (let i = 0, childDirs = groupObj.dir; i < childDirs.length; i++) {
     let dirName = childDirs[i]
     let branch = i === validatedFiles.length - 1 ? LAST_BRANCH : BRANCH
-    console.log(`${palceHolder}${branch}${dirName}`)
+    console.log(`${palceHolder}${branch}${chalk.green(dirName)}`)
     showDirTree(path.join(dirPath, dirName),
       (palceHolder === '' && branch !== LAST_BRANCH) ?
       TAB :
