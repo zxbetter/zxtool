@@ -3,7 +3,7 @@
   "bin": {
     "zxtool": "./bin/zxtool.js"
   },
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "personal command line tool",
   "main": "index.js",
   "scripts": {

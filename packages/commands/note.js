@@ -16,38 +16,71 @@ module.exports = (options) => {
 async function sync(message) {
   try {
 
+    // git add
+    await gitAdd()
+
     // git status
-    var status = await gitStaus()
+    let status = await gitStaus()
     
+    let statusMessage = status.stdout
+
     // 本地分支领先远程分支，需要推送本地分支到远程分支
-    let onlyPushFlag = status.stdout.match(/Your branch is ahead of/)
+    let onlyPushFlag = /Your branch is ahead of/.test(statusMessage)
 
     // 本地仓库无需提交
-    let cleanFlag = status.stdout.match(/nothing to commit, working tree clean/)
+    let cleanFlag = /nothing to commit, working tree clean/.test(statusMessage)
     
     if (!onlyPushFlag && cleanFlag) {
       return console.log(chalk.green('nothing to commit, working tree clean'))
     }
 
     if (!onlyPushFlag) {
-      // git add
-      await gitAdd()
-  
       // git commit
       await gitCommit(message)
     }
 
     // git pull
-    const branch = status.stdout.match(/^On branch (.+)\s/)
+    const branch = statusMessage.match(/^On branch (.+)\s/)
     await gitPull(branch[1])
 
     // git push
     await gitPush(branch[1])
 
+    // 打印修改的文件
+    if (!onlyPushFlag) {
+      printSummary(statusMessage)
+    }
+
     console.log(chalk.green('Complete!'))
   } catch (err) {
     console.err(err)
   }
+}
+
+/**
+ * 输出修改的文件
+ * 
+ * @param statusMessage git status 的输出信息
+ */
+function printSummary(statusMessage) {
+  console.log("\n==================== summary ====================")
+  printArray(statusMessage.match(/new file:\s+(.+)/g), chalk.green)
+  printArray(statusMessage.match(/modified:\s+(.+)/g), chalk.yellow)
+  printArray(statusMessage.match(/deleted:\s+(.+)/g), chalk.red)
+  console.log("=================================================\n")
+}
+
+/**
+ * 打印数组
+ * 
+ * @param array 数组
+ * @param color chalk
+ */
+function printArray(array, color) {
+  if (!array) return
+  array.forEach(o => {
+    console.log(!!color ? color(o) : o)
+  })
 }
 
 /**
