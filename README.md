@@ -47,11 +47,17 @@ zxtool note -s "提交信息"
 执行效果：
 
 ```
-√ Checking the working tree status
 √ Adding changes to the index
+√ Checking the working tree status
 √ Record changes to the repository
 √ Pulling from remote master
 √ Pushing to remote master
+
+==================== summary ====================
+modified:   package.json
+modified:   packages/commands/note.js
+=================================================
+
 Complete!
 ```
 
