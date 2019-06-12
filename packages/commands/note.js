@@ -63,23 +63,38 @@ async function sync(message) {
  * @param statusMessage git status 的输出信息
  */
 function printSummary(statusMessage) {
-  console.log("\n==================== summary ====================")
-  printArray(statusMessage.match(/new file:\s+(.+)/g), chalk.green)
-  printArray(statusMessage.match(/modified:\s+(.+)/g), chalk.yellow)
-  printArray(statusMessage.match(/deleted:\s+(.+)/g), chalk.red)
-  console.log("=================================================\n")
+  const newFiles = statusMessage.match(/new file:\s+(.+)/g)
+  const modifiedFiles = statusMessage.match(/modified:\s+(.+)/g)
+  const deleteFiles = statusMessage.match(/deleted:\s+(.+)/g)
+
+  let allFiles = []
+  allFiles = !!newFiles ? allFiles.concat(newFiles) : allFiles
+  allFiles = !!modifiedFiles ? allFiles.concat(modifiedFiles) : allFiles
+  allFiles = !!deleteFiles ? allFiles.concat(deleteFiles) : allFiles
+
+  if (allFiles.length === 0) return
+
+  const maxLength = allFiles.map(a => a.length).reduce((a, b) => a > b ? a : b)
+  const topBottom = new Array(maxLength + 5).join('=')
+
+  console.log(`\n${topBottom}`)
+  printArray(newFiles, maxLength, chalk.green)
+  printArray(modifiedFiles, maxLength, chalk.yellow)
+  printArray(deleteFiles, maxLength, chalk.red)
+  console.log(`${topBottom}\n`)
 }
 
 /**
  * 打印数组
  * 
  * @param array 数组
+ * @param maxLength 最大长度
  * @param color chalk
  */
-function printArray(array, color) {
+function printArray(array, maxLength, color) {
   if (!array) return
   array.forEach(o => {
-    console.log(!!color ? color(o) : o)
+    console.log(`= ${!!color ? color(o) : o}${new Array(maxLength - o.length + 2).join(' ')}=`)
   })
 }
 

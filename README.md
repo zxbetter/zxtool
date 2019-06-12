@@ -3,7 +3,7 @@
 
 ## 简介
 
-使用 `node.js` 构建的命令行工具。
+使用 `node.js` 构建的命令行工具。主要是方便个人平时使用。
 
 ## 安装
 
@@ -16,7 +16,7 @@ npm install -g zxtool
 - `zxtool -V` 查看工具的版本信息
 - `zxtool -h` 查看工具的帮助文档。会列出所有的功能。
 
-#### `zxtool tree`
+### `zxtool tree`
 
 列出指定目录的目录树。
 
@@ -53,10 +53,10 @@ zxtool note -s "提交信息"
 √ Pulling from remote master
 √ Pushing to remote master
 
-==================== summary ====================
-modified:   package.json
-modified:   packages/commands/note.js
-=================================================
+=========================================
+= modified:   package.json              =
+= modified:   packages/commands/note.js =
+=========================================
 
 Complete!
 ```
