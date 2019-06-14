@@ -6,7 +6,7 @@ const package = require('../package.json')
 const cleanCmdArgs = require('../packages/libs/util/cleanCmdArgs')
 const optionList = require('../packages/libs/type/list')
 const fileTree = require('../packages/commands/file-tree')
-const note = require('../packages/commands/note')
+const git = require('../packages/commands/git')
 
 program
   .version(package.version)
@@ -21,14 +21,14 @@ program
   })
 
 program
-  .command('note')
-  .description('笔记工具')
-  .option('-i, --init <git>', '初始化笔记（需要指定 git 仓库地址）')
-  .option('-s, --sync [message]', '同步笔记')
+  .command('git')
+  .description('GIT 工具')
+  .option('-i, --init <git>', '初始化（需要指定 git 仓库地址）')
+  .option('-s, --sync [message]', '同步本地和远程仓库')
   .action((cmd) => {
     let options = cleanCmdArgs(cmd)
     if (options.length === 0) return program.outputHelp()
-    note(options)
+    git(options)
   })
 
 // 输入未知的命令时提示帮助信息

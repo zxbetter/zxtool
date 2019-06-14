@@ -74,7 +74,7 @@ function printSummary(statusMessage) {
 
   if (allFiles.length === 0) return
 
-  const maxLength = allFiles.map(a => a.length).reduce((a, b) => a > b ? a : b)
+  const maxLength = allFiles.map(a => getStrLength(a)).reduce((a, b) => a > b ? a : b)
   const topBottom = new Array(maxLength + 5).join('=')
 
   console.log(`\n${topBottom}`)
@@ -94,8 +94,18 @@ function printSummary(statusMessage) {
 function printArray(array, maxLength, color) {
   if (!array) return
   array.forEach(o => {
-    console.log(`= ${!!color ? color(o) : o}${new Array(maxLength - o.length + 2).join(' ')}=`)
+    console.log(`= ${!!color ? color(o) : o}${new Array(maxLength - getStrLength(o) + 2).join(' ')}=`)
   })
+}
+
+/**
+ * 获取字符串长度，汉字长度为 2
+ * @param str 字符串
+ */
+function getStrLength(str) {
+  const zhCNReg = /[\u4e00-\u9fa5|\u3002|\uff1f|\uff01|\uff0c|\u3001|\uff1b|\uff1a|\u201c|\u201d|\u2018|\u2019|\uff08|\uff09|\u300a|\u300b|\u3008|\u3009|\u3010|\u3011|\u300e|\u300f|\u300c|\u300d|\ufe43|\ufe44|\u3014|\u3015|\u2026|\u2014|\uff5e|\ufe4f|\uffe5]/g
+  let zhCharArray = str.match(zhCNReg)
+  return !zhCharArray ? str.length : str.length + zhCharArray.length
 }
 
 /**

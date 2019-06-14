@@ -35,13 +35,13 @@ $ zxtool tree src -e ^index
    └─type.js
 ```
 
-### `zxtool note`
+### `zxtool git`
 
-使用 git 仓库用于同步笔记。
+简单的 git 命令封装，用于同步本地仓库和远程仓库。
 
 ```shell
-# 同步笔记
-zxtool note -s "提交信息"
+# 同步本地仓库和远程仓库
+zxtool git -s "提交信息"
 ```
 
 执行效果：
