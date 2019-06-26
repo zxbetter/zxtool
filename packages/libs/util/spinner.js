@@ -20,7 +20,8 @@ exports.spinnerSync = (callback, spinnerText) => {
 exports.spinnerAsync = (command, spinnerText) => {
   const spinner = ora({
     text: chalk.cyan(spinnerText),
-    spinner: cliSpinners.bouncingBall
+    // https://github.com/sindresorhus/cli-spinners/blob/master/spinners.json
+    spinner: cliSpinners.monkey
   })
   spinner.start()
 

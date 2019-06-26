@@ -65,11 +65,13 @@ async function sync(message) {
 function printSummary(statusMessage) {
   const newFiles = statusMessage.match(/new file:\s+(.+)/g)
   const modifiedFiles = statusMessage.match(/modified:\s+(.+)/g)
+  const renamedFiles = statusMessage.match(/renamed:\s+(.+)/g)
   const deleteFiles = statusMessage.match(/deleted:\s+(.+)/g)
 
   let allFiles = []
   allFiles = !!newFiles ? allFiles.concat(newFiles) : allFiles
   allFiles = !!modifiedFiles ? allFiles.concat(modifiedFiles) : allFiles
+  allFiles = !!renamedFiles ? allFiles.concat(renamedFiles) : allFiles
   allFiles = !!deleteFiles ? allFiles.concat(deleteFiles) : allFiles
 
   if (allFiles.length === 0) return
@@ -80,6 +82,7 @@ function printSummary(statusMessage) {
   console.log(`\n${topBottom}`)
   printArray(newFiles, maxLength, chalk.green)
   printArray(modifiedFiles, maxLength, chalk.yellow)
+  printArray(renamedFiles, maxLength, chalk.red)
   printArray(deleteFiles, maxLength, chalk.red)
   console.log(`${topBottom}\n`)
 }
