@@ -3,7 +3,7 @@
   "bin": {
     "zxtool": "./bin/zxtool.js"
   },
-  "version": "1.3.7",
+  "version": "1.3.8",
   "description": "command line tool",
   "main": "index.js",
   "scripts": {
@@ -23,6 +23,7 @@
   "author": "devin",
   "license": "MIT",
   "dependencies": {
+    "@itdevin/better-js": "^1.5.7",
     "chalk": "^2.4.1",
     "commander": "^2.19.0",
     "execa": "^1.0.0",
